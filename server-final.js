@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+var uri = 'mongodb://normaluser:normalUser1234@ds013589.mlab.com:13589/database-1';
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/nodeappdatabase', { useNewUrlParser: true });
+mongoose.connect(uri, { useNewUrlParser: true });
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
 
 //new user Schema
 const userSchema = new Schema({
